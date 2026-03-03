@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Therapist - MindfulMe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/bundle.css">
+    <link rel="shortcut icon" href="../icon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <div id="navbar-root"></div>
+
+    <section class="page-banner page-banner--therapist">
+        <div class="page-banner__content">
+            <h1>AI Therapy Assistant</h1>
+            <p>A supportive space for reflection and guided conversation.</p>
+        </div>
+    </section>
+
+    <main class="therapist-container fade-in">
+        <div class="disclaimer">
+            <p>Note: This AI assistant is not a replacement for professional mental health care.
+                If you're experiencing severe symptoms, please seek professional help.</p>
+        </div>
+
+        <div class="chat-container">
+            <div class="chat-messages" id="chat-messages">
+                <div class="message ai-message">
+                    <div class="message-content">
+                        Hello! I'm here to listen and support you. How are you feeling today?
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-quick-actions">
+                <button id="discuss-journal-btn" class="quick-action-btn" title="Discuss your most recent journal entry with AI">
+                    📓 Discuss Latest Journal Entry
+                </button>
+            </div>
+
+            <div class="chat-input">
+                <textarea id="user-input" placeholder="Share your thoughts..." rows="1"></textarea>
+                <button id="send-message" class="primary-btn">
+                    &#10148;
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/apiClient.js"></script>
+    <script src="../js/storage.js"></script>
+    <script src="../js/ui-helpers.js"></script>
+    <script>
+        loadNavbar('ai-therapist');
+    </script>
+    <script src="../js/ai-therapist.js"></script>
+</body>
+
+</html>

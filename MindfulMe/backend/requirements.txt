@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+python-multipart
+pydantic-settings
+pytest
+httpx
+fer
+multimodal-emotion-engine
+openai-whisper
+setuptools
