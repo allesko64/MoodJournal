@@ -1,0 +1,1021 @@
+/*
+ * emotion-journal.css
+ * All classes prefixed .ej-* to avoid collisions with bundle.css
+ * Uses existing CSS variables from bundle.css (--primary, --surface, etc.)
+ */
+
+/* ── Page Layout ────────────────────────────────────────── */
+.ej-page {
+    padding: 2.5rem 5% 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.ej-page-title {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+}
+
+.ej-page-subtitle {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+}
+
+/* ── Cards ──────────────────────────────────────────────── */
+.ej-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    transition: box-shadow var(--transition);
+}
+
+.ej-card:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+.ej-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.ej-card-icon {
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: rgba(58, 196, 125, 0.1);
+    border-radius: var(--radius-md);
+    flex-shrink: 0;
+}
+
+.ej-card-title {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: var(--text);
+    margin: 0;
+}
+
+.ej-card-subtitle {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* ── Video Capture Section ──────────────────────────────── */
+.ej-video-wrapper {
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: #0d1117;
+    min-height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+}
+
+.ej-video-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    color: rgba(255,255,255,0.5);
+    pointer-events: none;
+}
+
+.ej-video-placeholder-icon {
+    font-size: 3.5rem;
+    opacity: 0.6;
+}
+
+.ej-video-placeholder-text {
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+#ej-video-preview {
+    width: 100%;
+    max-height: 360px;
+    object-fit: cover;
+    display: none;
+    border-radius: var(--radius-md);
+}
+
+.ej-recording-timer {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: rgba(224, 122, 95, 0.9);
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.3rem 0.75rem;
+    border-radius: var(--radius-full);
+    display: none;
+    align-items: center;
+    gap: 0.4rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.ej-recording-dot {
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    animation: ej-blink 1s steps(1) infinite;
+}
+
+@keyframes ej-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.ej-recording-timer.active {
+    display: flex;
+}
+
+/* Controls row */
+.ej-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.ej-divider {
+    width: 1px;
+    height: 1.75rem;
+    background: var(--border);
+    flex-shrink: 0;
+}
+
+.ej-upload-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    padding: 0.6rem 1rem;
+    border: 1.5px dashed var(--border);
+    border-radius: var(--radius-md);
+    transition: all var(--transition);
+}
+
+.ej-upload-label:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: rgba(58, 196, 125, 0.05);
+}
+
+#ej-file-upload {
+    display: none;
+}
+
+/* ── Buttons ────────────────────────────────────────────── */
+.ej-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.7rem 1.4rem;
+    border-radius: var(--radius-xl);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition);
+    border: 2px solid transparent;
+    font-family: var(--font-body);
+    white-space: nowrap;
+}
+
+.ej-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.ej-btn-primary {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.ej-btn-primary:hover:not(:disabled) {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(58, 196, 125, 0.3);
+}
+
+.ej-btn-secondary {
+    background: transparent;
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+.ej-btn-secondary:hover:not(:disabled) {
+    background: rgba(58, 196, 125, 0.08);
+    transform: translateY(-2px);
+}
+
+.ej-btn-danger {
+    background: var(--danger);
+    color: white;
+    border-color: var(--danger);
+}
+
+.ej-btn-danger:hover:not(:disabled) {
+    background: var(--danger-dark);
+    border-color: var(--danger-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(224, 122, 95, 0.3);
+}
+
+.ej-btn-ghost {
+    background: var(--bg-alt);
+    color: var(--text-secondary);
+    border-color: var(--border);
+}
+
+.ej-btn-ghost:hover:not(:disabled) {
+    background: var(--border);
+    color: var(--text);
+}
+
+/* ── Processing Status Section ──────────────────────────── */
+.ej-processing-section {
+    display: none;
+}
+
+.ej-processing-section.visible {
+    display: block;
+}
+
+.ej-spinner-wrap {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.ej-spinner {
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 3px solid var(--border);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: ej-spin 0.8s linear infinite;
+    flex-shrink: 0;
+}
+
+@keyframes ej-spin {
+    to { transform: rotate(360deg); }
+}
+
+.ej-process-label {
+    font-size: 0.95rem;
+    color: var(--text);
+    font-weight: 500;
+}
+
+.ej-process-sub {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    margin-top: 0.15rem;
+}
+
+/* Progress bar */
+.ej-progress-bar {
+    height: 8px;
+    background: var(--bg-alt);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    margin-top: 0.75rem;
+}
+
+.ej-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    border-radius: var(--radius-full);
+    width: 0%;
+    transition: width 0.6s ease;
+}
+
+.ej-progress-pct {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-align: right;
+    margin-top: 0.3rem;
+}
+
+/* Steps indicator */
+.ej-steps {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+    flex-wrap: wrap;
+}
+
+.ej-step {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.8rem;
+    color: var(--text-light);
+    padding: 0.3rem 0.75rem;
+    border-radius: var(--radius-full);
+    border: 1.5px solid var(--border);
+    transition: all 0.3s ease;
+}
+
+.ej-step.active {
+    color: var(--primary);
+    border-color: var(--primary);
+    background: rgba(58, 196, 125, 0.08);
+}
+
+.ej-step.done {
+    color: var(--success);
+    border-color: var(--success);
+    background: rgba(107, 158, 120, 0.1);
+}
+
+.ej-step-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+/* ── Results Section ────────────────────────────────────── */
+.ej-results-section {
+    display: none;
+}
+
+.ej-results-section.visible {
+    display: block;
+    animation: ej-fadein 0.4s ease;
+}
+
+@keyframes ej-fadein {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.ej-results-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+}
+
+/* ── Emotion Dominant Chip ──────────────────────────────── */
+.ej-dominant-row {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.ej-emotion-emoji {
+    font-size: 3rem;
+    line-height: 1;
+}
+
+.ej-dominant-label {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    color: var(--text);
+    text-transform: capitalize;
+}
+
+.ej-intensity-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3rem 0.85rem;
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: rgba(58, 196, 125, 0.12);
+    color: var(--primary-dark);
+    border: 1.5px solid rgba(58, 196, 125, 0.3);
+}
+
+/* ── Emotion Distribution Bars ──────────────────────────── */
+.ej-dist-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.ej-dist-row {
+    display: grid;
+    grid-template-columns: 5rem 1fr 3rem;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.ej-dist-label {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    text-transform: capitalize;
+    font-weight: 500;
+}
+
+.ej-dist-track {
+    height: 8px;
+    background: var(--bg-alt);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+.ej-dist-fill {
+    height: 100%;
+    border-radius: var(--radius-full);
+    transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.ej-dist-pct {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ── Sentiment Gauge ────────────────────────────────────── */
+.ej-gauge-wrap {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+}
+
+.ej-gauge {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.ej-gauge-inner {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.ej-gauge-score {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+}
+
+.ej-gauge-unit {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+}
+
+.ej-sentiment-label {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: var(--text);
+    text-transform: capitalize;
+    margin-bottom: 0.25rem;
+}
+
+.ej-sentiment-sub {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+/* Sentiment distribution pills */
+.ej-sent-dist {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.75rem;
+}
+
+.ej-sent-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1.5px solid;
+}
+
+.ej-sent-pill--pos {
+    background: rgba(107, 158, 120, 0.1);
+    color: var(--success);
+    border-color: rgba(107, 158, 120, 0.3);
+}
+
+.ej-sent-pill--neu {
+    background: rgba(160, 164, 168, 0.1);
+    color: var(--text-secondary);
+    border-color: rgba(160, 164, 168, 0.3);
+}
+
+.ej-sent-pill--neg {
+    background: rgba(224, 122, 95, 0.1);
+    color: var(--danger);
+    border-color: rgba(224, 122, 95, 0.3);
+}
+
+/* Key phrases */
+.ej-phrases {
+    margin-top: 1rem;
+}
+
+.ej-phrases-title {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+
+.ej-phrase-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.ej-phrase-tag {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-full);
+    padding: 0.25rem 0.7rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+/* ── Transcript Card ────────────────────────────────────── */
+.ej-transcript-body {
+    background: var(--bg-alt);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    font-size: 0.92rem;
+    line-height: 1.75;
+    color: var(--text);
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border);
+}
+
+.ej-transcript-empty {
+    color: var(--text-light);
+    font-style: italic;
+}
+
+.ej-segments-title {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+
+.ej-segment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    max-height: 180px;
+    overflow-y: auto;
+}
+
+.ej-segment-row {
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    gap: 0.75rem;
+    align-items: flex-start;
+    font-size: 0.84rem;
+}
+
+.ej-segment-time {
+    color: var(--primary);
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    padding-top: 0.05rem;
+}
+
+.ej-segment-text {
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* ── Wellness Card ──────────────────────────────────────── */
+.ej-wellness-state {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-md);
+    border: 1.5px solid var(--border);
+    background: var(--bg-alt);
+}
+
+.ej-wellness-icon {
+    font-size: 1.75rem;
+    flex-shrink: 0;
+}
+
+.ej-wellness-name {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    color: var(--text);
+    margin-bottom: 0.1rem;
+}
+
+.ej-wellness-indicator {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+/* State variants */
+.ej-wellness-state--distressed {
+    background: rgba(224, 122, 95, 0.06);
+    border-color: rgba(224, 122, 95, 0.25);
+}
+
+.ej-wellness-state--distressed .ej-wellness-name {
+    color: var(--danger-dark);
+}
+
+.ej-wellness-state--positive {
+    background: rgba(107, 158, 120, 0.06);
+    border-color: rgba(107, 158, 120, 0.25);
+}
+
+.ej-wellness-state--positive .ej-wellness-name {
+    color: var(--success);
+}
+
+.ej-recs-title {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+}
+
+.ej-recs-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+
+.ej-recs-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    padding: 0.6rem 0.85rem;
+    background: var(--bg-alt);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--primary);
+}
+
+.ej-recs-list li::before {
+    content: "✦";
+    color: var(--primary);
+    font-size: 0.65rem;
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+}
+
+/* ── Emotion Timeline ───────────────────────────────────── */
+.ej-timeline {
+    margin-top: 1.25rem;
+}
+
+.ej-timeline-toggle {
+    font-size: 0.82rem;
+    color: var(--primary);
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: var(--font-body);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.ej-timeline-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-top: 0.75rem;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.ej-timeline-row {
+    display: grid;
+    grid-template-columns: 3.5rem 5rem 1fr 3rem;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.ej-timeline-ts {
+    color: var(--text-light);
+    font-variant-numeric: tabular-nums;
+}
+
+.ej-timeline-chip {
+    padding: 0.15rem 0.55rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: 1px solid;
+    text-transform: capitalize;
+    text-align: center;
+}
+
+.ej-timeline-bar-wrap {
+    height: 5px;
+    background: var(--bg-alt);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+.ej-timeline-bar {
+    height: 100%;
+    border-radius: var(--radius-full);
+}
+
+.ej-timeline-conf {
+    color: var(--text-light);
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+}
+
+/* ── Action buttons row ─────────────────────────────────── */
+.ej-action-row {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+}
+
+/* ── Toast ──────────────────────────────────────────────── */
+.ej-toast {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    padding: 0.85rem 1.5rem;
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: white;
+    z-index: 9999;
+    animation: ej-slideup 0.3s ease forwards;
+    box-shadow: var(--shadow-lg);
+    max-width: 340px;
+}
+
+.ej-toast--success { background: var(--success); }
+.ej-toast--error   { background: var(--danger); }
+.ej-toast--info    { background: var(--primary); }
+
+@keyframes ej-slideup {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .ej-page { padding: 1.5rem 4% 3rem; }
+    .ej-card { padding: 1.25rem; }
+
+    .ej-results-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ej-dist-row {
+        grid-template-columns: 4.5rem 1fr 2.5rem;
+    }
+
+    .ej-segment-row {
+        grid-template-columns: 6rem 1fr;
+    }
+
+    .ej-timeline-row {
+        grid-template-columns: 3rem 4.5rem 1fr 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .ej-btn { padding: 0.6rem 1rem; font-size: 0.85rem; }
+    .ej-gauge { width: 100px; height: 100px; }
+    .ej-gauge-inner { width: 66px; height: 66px; }
+}
+
+/* ── Past Entries History ────────────────────────────────── */
+.ej-history-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+.ej-history-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: box-shadow var(--transition), transform var(--transition);
+}
+
+.ej-history-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.ej-history-card-header {
+    padding: 1.1rem 1.25rem 0.75rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.ej-history-state-badge {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 0.1rem;
+}
+
+.ej-history-meta {
+    flex: 1;
+    min-width: 0;
+}
+
+.ej-history-date {
+    font-size: 0.78rem;
+    color: var(--text-light);
+    margin-bottom: 0.2rem;
+}
+
+.ej-history-state-name {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: var(--text);
+}
+
+.ej-history-delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    color: var(--text-light);
+    padding: 0.25rem;
+    border-radius: var(--radius-sm);
+    transition: color var(--transition), background var(--transition);
+    flex-shrink: 0;
+}
+
+.ej-history-delete-btn:hover {
+    color: var(--danger);
+    background: rgba(224, 122, 95, 0.08);
+}
+
+/* Pill row inside history card */
+.ej-history-pills {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    padding: 0 1.25rem 0.85rem;
+}
+
+.ej-history-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: 1px solid var(--border);
+    background: var(--bg-alt);
+    color: var(--text-secondary);
+}
+
+/* Transcript snippet */
+.ej-history-transcript {
+    padding: 0.65rem 1.25rem;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    border-top: 1px solid var(--border);
+    font-style: italic;
+    /* clamp to 2 lines */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Expand toggle */
+.ej-history-toggle {
+    width: 100%;
+    background: var(--bg-alt);
+    border: none;
+    border-top: 1px solid var(--border);
+    padding: 0.55rem 1.25rem;
+    font-size: 0.78rem;
+    color: var(--primary);
+    font-weight: 600;
+    cursor: pointer;
+    text-align: left;
+    font-family: var(--font-body);
+    transition: background var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.ej-history-toggle:hover {
+    background: rgba(58, 196, 125, 0.06);
+}
+
+/* Expanded detail panel */
+.ej-history-detail {
+    display: none;
+    padding: 1rem 1.25rem;
+    border-top: 1px solid var(--border);
+    background: var(--bg-alt);
+}
+
+.ej-history-detail.open {
+    display: block;
+    animation: ej-fadein 0.25s ease;
+}
+
+.ej-history-detail-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.ej-history-section-label {
+    font-size: 0.73rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    margin-bottom: 0.3rem;
+}
+
+.ej-history-rec {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    padding: 0.4rem 0.7rem;
+    background: var(--surface);
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--primary);
+    line-height: 1.5;
+}
+

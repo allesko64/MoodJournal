@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mental Health Resources — guided exercises, meditations, and articles to support your well-being.">
+    <title>Resources - MindfulMe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/bundle.css">
+    <link rel="stylesheet" href="/features/diet-plan/diet-plan.css">
+    <link rel="shortcut icon" href="/assets/icon.ico" type="image/x-icon">
+</head>
+<body>
+    <div id="navbar-root"></div>
+
+    <section class="page-banner page-banner--resources">
+        <div class="page-banner__content">
+            <h1>Mental Health Resources</h1>
+            <p>Guided exercises, articles, and activities to support your well-being.</p>
+        </div>
+    </section>
+
+    <main class="resources-container">
+        <section class="diet-plan-highlight resource-category">
+            <div class="diet-plan-highlight__content">
+                <div>
+                    <span class="diet-plan-highlight__badge">New</span>
+                    <h2>AI Diet Plan Generator</h2>
+                    <p>Chat with NutriGuide to build a personalized 7-day meal plan based on your goals, preferences, allergies, and activity level.</p>
+                </div>
+                <a href="/features/diet-plan/diet-plan.html" class="resource-link diet-plan-highlight__cta">Open Diet Plan</a>
+            </div>
+        </section>
+        <div class="resources-grid">
+            <section class="resource-category">
+                <div class="resource-category-header">
+                    <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=200&q=80" alt="Meditation">
+                    <h2>Guided Meditations</h2>
+                </div>
+                <div class="resource-cards">
+                    <div class="resource-card">
+                        <h3>Mindfulness Meditation</h3>
+                        <p>10 minutes of guided mindfulness practice</p>
+                        <a href="https://www.youtube.com/watch?v=ZToicYcHIOU" target="_blank" class="resource-link">Start Session</a>
+                    </div>
+                    <div class="resource-card">
+                        <h3>Sleep Meditation</h3>
+                        <p>Calming meditation for better sleep</p>
+                        <a href="https://www.youtube.com/watch?v=aEqlQvczMJQ" target="_blank" class="resource-link">Start Session</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="resource-category">
+                <div class="resource-category-header">
+                    <img src="https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?w=200&q=80" alt="Nature leaves">
+                    <h2>Breathing Exercises</h2>
+                </div>
+                <div class="breathing-exercise">
+                    <div class="breathing-container">
+                        <div class="breathing-circle"></div>
+                        <span class="breathing-text">Press Start to begin</span>
+                        <div class="breath-count">Breaths: <span id="breath-counter">0</span></div>
+                    </div>
+                    <div class="breathing-controls">
+                        <button id="start-breathing" class="breathing-btn">Start</button>
+                        <button id="stop-breathing" class="breathing-btn" disabled>Stop</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="resource-category">
+                <div class="resource-category-header">
+                    <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=200&q=80" alt="Reading and learning">
+                    <h2>Educational Articles</h2>
+                </div>
+                <div class="article-list">
+                    <a href="https://www.healthline.com/health/mental-health/how-to-cope-with-anxiety" class="article-item" target="_blank">
+                        <h3>Understanding Anxiety and Its Effects</h3>
+                        <p>Learn about the different types of anxiety and coping mechanisms</p>
+                    </a>
+                    <a href="https://www.medicalnewstoday.com/articles/self-care-examples" class="article-item" target="_blank">
+                        <h3>The Importance of Self-Care</h3>
+                        <p>Discover why self-care is crucial for mental health</p>
+                    </a>
+                </div>
+            </section>
+
+            <section class="resource-category">
+                <div class="resource-category-header">
+                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=200&q=80" alt="Self-care and wellness">
+                    <h2>Self-Care Activities</h2>
+                </div>
+                <div class="activity-suggestions">
+                    <div class="activity-card">
+                        <h3>5-4-3-2-1 Grounding</h3>
+                        <p>Name 5 things you can see, 4 you can touch, 3 you can hear, 2 you can smell, and 1 you can taste. This exercise helps anchor you to the present moment.</p>
+                    </div>
+                    <div class="activity-card">
+                        <h3>Joy Journal</h3>
+                        <p>Take 5 minutes to write down three positive moments from your day, no matter how small. This practice helps train your brain to notice the good.</p>
+                    </div>
+                    <div class="activity-card">
+                        <h3>Digital Sunset</h3>
+                        <p>Turn off screens 1 hour before bed. Instead, try reading, stretching, or listening to calming music to improve sleep quality and reduce anxiety.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="/shared/api-client.js"></script>
+    <script src="/shared/storage.js"></script>
+    <script src="/shared/ui-helpers.js"></script>
+    <script>loadNavbar('resources');</script>
+    <script src="/features/resources/breathing.js"></script>
+</body>
+</html>

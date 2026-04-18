@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Wellness Dashboard — view your mood trends, streaks, and insights at a glance.">
+    <title>Dashboard - MindfulMe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/bundle.css">
+    <link rel="shortcut icon" href="/assets/icon.ico" type="image/x-icon">
+</head>
+<body>
+    <div id="navbar-root"></div>
+
+    <section class="page-banner page-banner--dashboard">
+        <div class="page-banner__content">
+            <h1>Your Wellness Dashboard</h1>
+            <p>See how you're doing at a glance — streaks, trends, and personalized insights.</p>
+        </div>
+    </section>
+
+    <main class="dashboard-container">
+        <div class="dash-stats" id="dash-stats"></div>
+
+        <div class="dash-grid">
+            <section class="dash-card dash-card--wide">
+                <h2>Mood Trend <span class="dash-card__subtitle">Last 30 days</span></h2>
+                <canvas id="dash-trend-chart"></canvas>
+            </section>
+
+            <section class="dash-card">
+                <h2>Mood Distribution</h2>
+                <div id="dash-distribution"></div>
+            </section>
+
+            <section class="dash-card">
+                <h2>Top Factors</h2>
+                <div id="dash-factors"></div>
+            </section>
+        </div>
+
+        <section class="dash-card dash-card--full">
+            <h2>Mood Insights</h2>
+            <p class="dash-card__desc">Correlations between your moods and contributing factors.</p>
+            <div id="dash-insights" class="dash-insights-grid"></div>
+        </section>
+
+        <section class="dash-card dash-card--full">
+            <h2>Weekly Summary</h2>
+            <div id="dash-weekly" class="dash-weekly"></div>
+        </section>
+    </main>
+
+    <script src="/shared/api-client.js"></script>
+    <script src="/shared/storage.js"></script>
+    <script src="/shared/ui-helpers.js"></script>
+    <script>loadNavbar('dashboard');</script>
+    <script src="/features/dashboard/dashboard.js"></script>
+</body>
+</html>

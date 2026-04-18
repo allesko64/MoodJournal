@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Video Emotion Journal — record your thoughts on camera and get AI-powered emotion and sentiment analysis with MindfulMe.">
+    <title>Video Journal — MindfulMe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Existing shared styles (not modified) -->
+    <link rel="stylesheet" href="/css/bundle.css">
+    <!-- New emotion-journal styles (prefixed .ej-*) -->
+    <link rel="stylesheet" href="/features/emotion-journal/emotion-journal.css">
+    <link rel="shortcut icon" href="/assets/icon.ico" type="image/x-icon">
+</head>
+<body>
+    <div id="navbar-root"></div>
+
+    <!-- Page Banner -->
+    <section class="page-banner page-banner--journal">
+        <div class="page-banner__content">
+            <h1>Video Emotion Journal</h1>
+            <p>Record yourself, speak freely, and receive AI-powered emotion and sentiment insights.</p>
+        </div>
+    </section>
+
+    <main class="ej-page">
+
+        <!-- ── SECTION 1: Video Capture ───────────────────────────── -->
+        <section id="ej-capture-section">
+            <div class="ej-card">
+                <div class="ej-card-header">
+                    <div class="ej-card-icon">🎥</div>
+                    <div>
+                        <h2 class="ej-card-title">Record Your Journal</h2>
+                        <p class="ej-card-subtitle">Speaking out loud often captures feelings that writing alone cannot.</p>
+                    </div>
+                </div>
+
+                <!-- Video preview area -->
+                <div class="ej-video-wrapper" id="ej-video-wrapper">
+                    <div class="ej-video-placeholder" id="ej-video-placeholder">
+                        <span class="ej-video-placeholder-icon">🎙️</span>
+                        <span class="ej-video-placeholder-text">Enable your camera to begin recording</span>
+                    </div>
+                    <video id="ej-video-preview" autoplay muted playsinline></video>
+                    <!-- Recording timer badge -->
+                    <div class="ej-recording-timer" id="ej-recording-timer">
+                        <span class="ej-recording-dot"></span>
+                        <span id="ej-timer-display">0:00</span>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="ej-controls">
+                    <button class="ej-btn ej-btn-secondary" id="ej-btn-camera">📷 Enable Camera</button>
+                    <button class="ej-btn ej-btn-danger"     id="ej-btn-record"  style="display:none;">⏺ Start Recording</button>
+                    <button class="ej-btn ej-btn-ghost"      id="ej-btn-stop"    style="display:none;">⏹ Stop</button>
+                    <button class="ej-btn ej-btn-ghost"      id="ej-btn-retake"  style="display:none;">↩ Retake</button>
+
+                    <div class="ej-divider"></div>
+
+                    <label class="ej-upload-label" for="ej-file-upload">
+                        📂 Upload video instead
+                    </label>
+                    <input type="file" id="ej-file-upload" accept="video/*">
+                </div>
+
+                <!-- Analyse button -->
+                <div style="margin-top:1.25rem; display:flex; align-items:center; gap:1rem; flex-wrap:wrap;">
+                    <button class="ej-btn ej-btn-primary" id="ej-btn-analyze" disabled>
+                        ✨ Analyse Emotions
+                    </button>
+                    <span id="ej-ready-hint" style="font-size:0.82rem; color:var(--text-secondary);">
+                        Record or upload a video to enable analysis.
+                    </span>
+                </div>
+            </div>
+
+            <!-- Playback preview (shown after stop) -->
+            <div class="ej-card" id="ej-playback-card" style="display:none;">
+                <div class="ej-card-header">
+                    <div class="ej-card-icon">▶️</div>
+                    <div>
+                        <h2 class="ej-card-title">Preview Recording</h2>
+                        <p class="ej-card-subtitle">Review before sending for analysis.</p>
+                    </div>
+                </div>
+                <video id="ej-playback-video" controls style="width:100%; border-radius:var(--radius-md); max-height:300px;"></video>
+                <p style="font-size:0.82rem; color:var(--text-secondary); margin-top:0.5rem;" id="ej-file-size-hint"></p>
+            </div>
+        </section>
+
+        <!-- ── SECTION 2: Processing Status ───────────────────────── -->
+        <section class="ej-card ej-processing-section" id="ej-processing-section">
+            <div class="ej-card-header">
+                <div class="ej-card-icon">🔬</div>
+                <div>
+                    <h2 class="ej-card-title">Analysing Your Journal</h2>
+                    <p class="ej-card-subtitle">This typically takes 12–20 seconds for a 60-second video.</p>
+                </div>
+            </div>
+
+            <div class="ej-spinner-wrap">
+                <div class="ej-spinner"></div>
+                <div>
+                    <div class="ej-process-label" id="ej-process-label">Uploading video…</div>
+                    <div class="ej-process-sub" id="ej-process-sub">Please keep this tab open.</div>
+                </div>
+            </div>
+
+            <div class="ej-progress-bar">
+                <div class="ej-progress-fill" id="ej-progress-fill"></div>
+            </div>
+            <div class="ej-progress-pct" id="ej-progress-pct">0%</div>
+
+            <div class="ej-steps">
+                <div class="ej-step" id="ej-step-upload">
+                    <div class="ej-step-dot"></div> Uploading
+                </div>
+                <div class="ej-step" id="ej-step-emotion">
+                    <div class="ej-step-dot"></div> Facial Emotion
+                </div>
+                <div class="ej-step" id="ej-step-transcript">
+                    <div class="ej-step-dot"></div> Transcription
+                </div>
+                <div class="ej-step" id="ej-step-sentiment">
+                    <div class="ej-step-dot"></div> Sentiment Analysis
+                </div>
+                <div class="ej-step" id="ej-step-wellness">
+                    <div class="ej-step-dot"></div> Wellness Summary
+                </div>
+            </div>
+        </section>
+
+        <!-- ── SECTION 3: Results ──────────────────────────────────── -->
+        <section class="ej-results-section" id="ej-results-section">
+
+            <div class="ej-results-grid">
+
+                <!-- Emotion Analysis Card -->
+                <div class="ej-card" id="ej-emotion-card">
+                    <div class="ej-card-header">
+                        <div class="ej-card-icon">😐</div>
+                        <div>
+                            <h3 class="ej-card-title">Facial Emotion</h3>
+                            <p class="ej-card-subtitle">Analysis from video frames</p>
+                        </div>
+                    </div>
+
+                    <div class="ej-dominant-row" id="ej-dominant-row">
+                        <span class="ej-emotion-emoji" id="ej-dominant-emoji">😐</span>
+                        <div>
+                            <div class="ej-dominant-label" id="ej-dominant-label">—</div>
+                            <span class="ej-intensity-chip" id="ej-intensity-chip">—% intensity</span>
+                        </div>
+                    </div>
+
+                    <div class="ej-dist-list" id="ej-emotion-dist"></div>
+
+                    <!-- Timeline (collapsible) -->
+                    <div class="ej-timeline" id="ej-emotion-timeline-wrap" style="display:none;">
+                        <button class="ej-timeline-toggle" id="ej-timeline-toggle">
+                            ▾ Show frame-by-frame timeline
+                        </button>
+                        <div class="ej-timeline-grid" id="ej-timeline-grid" style="display:none;"></div>
+                    </div>
+                </div>
+
+                <!-- Sentiment Card -->
+                <div class="ej-card" id="ej-sentiment-card">
+                    <div class="ej-card-header">
+                        <div class="ej-card-icon">💬</div>
+                        <div>
+                            <h3 class="ej-card-title">Speech Sentiment</h3>
+                            <p class="ej-card-subtitle">Analysis from transcript</p>
+                        </div>
+                    </div>
+
+                    <div class="ej-gauge-wrap">
+                        <div class="ej-gauge" id="ej-sentiment-gauge">
+                            <div class="ej-gauge-inner">
+                                <span class="ej-gauge-score" id="ej-gauge-score">—</span>
+                                <span class="ej-gauge-unit">/ ±1.0</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="ej-sentiment-label" id="ej-sentiment-label">—</div>
+                            <div class="ej-sentiment-sub">Overall sentiment score</div>
+                            <div class="ej-sent-dist" id="ej-sent-dist"></div>
+                        </div>
+                    </div>
+
+                    <div class="ej-phrases" id="ej-phrases-wrap" style="display:none;">
+                        <div class="ej-phrases-title">Key Phrases</div>
+                        <div class="ej-phrase-tags" id="ej-phrase-tags"></div>
+                    </div>
+                </div>
+
+                <!-- Transcript Card (full-width) -->
+                <div class="ej-card" id="ej-transcript-card" style="grid-column: 1 / -1;">
+                    <div class="ej-card-header">
+                        <div class="ej-card-icon">📝</div>
+                        <div>
+                            <h3 class="ej-card-title">Transcript</h3>
+                            <p class="ej-card-subtitle" id="ej-transcript-lang">Detected language: —</p>
+                        </div>
+                    </div>
+
+                    <div class="ej-transcript-body" id="ej-transcript-body">
+                        <span class="ej-transcript-empty">No transcript available.</span>
+                    </div>
+
+                    <div id="ej-segments-wrap" style="display:none;">
+                        <div class="ej-segments-title">Segments</div>
+                        <div class="ej-segment-list" id="ej-segment-list"></div>
+                    </div>
+                </div>
+
+                <!-- Wellness Summary Card (full-width) -->
+                <div class="ej-card" id="ej-wellness-card" style="grid-column: 1 / -1;">
+                    <div class="ej-card-header">
+                        <div class="ej-card-icon">🌱</div>
+                        <div>
+                            <h3 class="ej-card-title">Wellness Summary</h3>
+                            <p class="ej-card-subtitle">Personalised recommendations based on your entry</p>
+                        </div>
+                    </div>
+
+                    <div class="ej-wellness-state" id="ej-wellness-state-box">
+                        <span class="ej-wellness-icon" id="ej-wellness-icon">🌿</span>
+                        <div>
+                            <div class="ej-wellness-name" id="ej-wellness-name">—</div>
+                            <div class="ej-wellness-indicator" id="ej-wellness-indicator">—</div>
+                        </div>
+                    </div>
+
+                    <div class="ej-recs-title">Recommendations</div>
+                    <ul class="ej-recs-list" id="ej-recs-list"></ul>
+                </div>
+
+            </div><!-- /.ej-results-grid -->
+
+            <!-- Action buttons -->
+            <div class="ej-action-row">
+                <button class="ej-btn ej-btn-primary" id="ej-btn-save">💾 Save Entry</button>
+                <button class="ej-btn ej-btn-secondary" id="ej-btn-new">⊕ New Entry</button>
+            </div>
+
+        </section><!-- /#ej-results-section -->
+
+        <!-- ── SECTION 4: Past Entries (always visible) ───────────── -->
+        <section id="ej-history-section" style="margin-top:2rem;">
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem; flex-wrap:wrap; gap:0.5rem;">
+                <div>
+                    <h2 class="ej-page-title" style="margin-bottom:0.1rem;">Past Entries</h2>
+                    <p class="ej-page-subtitle" style="margin-bottom:0;">Your saved video journal analyses.</p>
+                </div>
+                <button class="ej-btn ej-btn-ghost" id="ej-btn-clear-history" style="font-size:0.8rem; padding:0.45rem 0.9rem;">
+                    🗑 Clear All
+                </button>
+            </div>
+
+            <!-- Empty state -->
+            <div id="ej-history-empty" class="ej-card" style="text-align:center; padding:2.5rem 2rem; display:none;">
+                <div style="font-size:2.5rem; margin-bottom:0.75rem;">📭</div>
+                <p style="color:var(--text-secondary); font-size:0.95rem;">
+                    No saved entries yet. Complete an analysis and click <strong>Save Entry</strong>.
+                </p>
+            </div>
+
+            <!-- Entry cards grid -->
+            <div id="ej-history-grid" class="ej-history-grid"></div>
+        </section>
+
+    </main>
+
+    <!-- Shared utilities (not modified) -->
+    <script src="/shared/api-client.js"></script>
+    <script src="/shared/storage.js"></script>
+    <script src="/shared/ui-helpers.js"></script>
+    <script>loadNavbar('emotion-journal');</script>
+    <!-- Emotion Journal script -->
+    <script src="/features/emotion-journal/emotion-journal.js"></script>
+</body>
+</html>

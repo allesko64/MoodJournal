@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Personal Journal — capture your thoughts and reflect on your day with MindfulMe.">
+    <title>Journal - MindfulMe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/bundle.css">
+    <link rel="shortcut icon" href="/assets/icon.ico" type="image/x-icon">
+</head>
+<body>
+    <div id="navbar-root"></div>
+
+    <section class="page-banner page-banner--journal">
+        <div class="page-banner__content">
+            <h1>Personal Journal</h1>
+            <p>Capture your thoughts, reflect on your day, and discover patterns in your journey.</p>
+        </div>
+    </section>
+
+    <main class="journal-container">
+        <div class="journal-tools">
+            <button id="new-entry" class="primary-btn">New Entry</button>
+            <div class="journal-filters">
+                <input type="text" placeholder="Search entries...">
+                <select>
+                    <option value="recent">Most Recent</option>
+                    <option value="oldest">Oldest First</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="journal-entry-form">
+            <input type="text" id="entry-title" placeholder="Entry Title">
+            <textarea id="entry-content" placeholder="Write your thoughts..."></textarea>
+            <div class="entry-tags">
+                <input type="text" placeholder="Add tags (comma separated)">
+            </div>
+
+            <div class="entry-media-recorder">
+                <h4>Record Video/Audio Journal</h4>
+                <div class="language-selector">
+                    <label for="transcript-language">Transcription Language</label>
+                    <select id="transcript-language">
+                        <option value="auto">Auto-detect</option>
+                        <option value="en">English</option>
+                        <option value="hi">Hindi</option>
+                        <option value="kn">Kannada</option>
+                        <option value="ta">Tamil</option>
+                        <option value="te">Telugu</option>
+                        <option value="mr">Marathi</option>
+                        <option value="bn">Bengali</option>
+                        <option value="gu">Gujarati</option>
+                        <option value="es">Spanish</option>
+                        <option value="fr">French</option>
+                    </select>
+                </div>
+                <video id="camera-preview" autoplay muted style="display: none;"></video>
+                <div class="recording-controls">
+                    <button id="start-camera" class="secondary-btn">Enable Camera</button>
+                    <button id="start-recording" class="primary-btn" style="background-color: var(--danger); border-color: var(--danger); display: none;">Start Recording</button>
+                    <button id="stop-recording" class="secondary-btn" style="display: none;">Stop</button>
+                </div>
+                <p id="recording-status" style="display: none;">Recording...</p>
+                <div id="recording-playback-container" style="display: none;">
+                    <p>Recording saved temporarily. Click 'Save' to upload.</p>
+                    <video id="recording-playback" controls></video>
+                    <button id="retake-video" class="secondary-btn" style="margin-top: 0.5rem;">Retake</button>
+                </div>
+            </div>
+
+            <div class="entry-actions">
+                <button class="primary-btn" id="save-entry">Save</button>
+                <button class="secondary-btn" id="cancel-entry">Cancel</button>
+            </div>
+
+            <div id="saving-overlay" class="saving-overlay" style="display: none;">
+                <div class="saving-overlay__content">
+                    <div class="saving-spinner"></div>
+                    <p class="saving-overlay__text">Saving entry...</p>
+                    <div class="saving-progress-bar">
+                        <div class="saving-progress-bar__fill" id="saving-progress-fill"></div>
+                    </div>
+                    <p class="saving-overlay__percent" id="saving-percent"></p>
+                </div>
+            </div>
+        </div>
+
+        <div id="journal-entries" class="entries-grid"></div>
+    </main>
+
+    <script src="/shared/api-client.js"></script>
+    <script src="/shared/storage.js"></script>
+    <script src="/shared/ui-helpers.js"></script>
+    <script>loadNavbar('journal');</script>
+    <script src="/features/journal/journal.js"></script>
+</body>
+</html>

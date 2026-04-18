@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI Diet Plan Generator — build a personalized weekly meal plan with NutriGuide.">
+    <title>Diet Plan - MindfulMe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/bundle.css">
+    <link rel="stylesheet" href="/features/diet-plan/diet-plan.css">
+    <link rel="shortcut icon" href="/assets/icon.ico" type="image/x-icon">
+</head>
+<body>
+    <div id="navbar-root"></div>
+    <section class="page-banner page-banner--diet-plan">
+        <div class="page-banner__content">
+            <h1>AI Diet Plan Generator</h1>
+            <p>Fill the form once and get your personalized 7-day meal plan.</p>
+        </div>
+    </section>
+    <main class="diet-plan-container fade-in">
+        <div class="disclaimer">
+            <p>NutriGuide gives general wellness guidance and is not a substitute for medical advice. Please consult a doctor or registered dietitian for medical conditions.</p>
+        </div>
+        
+        <div class="diet-layout">
+            <!-- New Presets Sidebar -->
+            <aside class="diet-presets-sidebar">
+                <h3>Quick Presets</h3>
+                <p>Instantly generate standard profiles for presentation.</p>
+                <div class="preset-buttons">
+                    <button id="preset-weight-loss" class="preset-btn" type="button">
+                        <span class="preset-icon">🔥</span> Weight Loss (Keto)
+                    </button>
+                    <button id="preset-muscle" class="preset-btn" type="button">
+                        <span class="preset-icon">💪</span> Muscle Gain (Protein)
+                    </button>
+                    <button id="preset-balance" class="preset-btn" type="button">
+                        <span class="preset-icon">⚖️</span> Balanced Maintenance
+                    </button>
+                </div>
+            </aside>
+            
+            <div class="diet-main-content">
+                <section class="diet-form-card">
+                    <h2>Your Diet Profile</h2>
+            <form id="diet-plan-form" class="diet-plan-form">
+                <div class="diet-form-grid diet-form-grid--4">
+                    <label>
+                        Age
+                        <input type="number" id="age" min="1" max="120" required>
+                    </label>
+                    <label>
+                        Sex
+                        <select id="sex" required>
+                            <option value="">Select</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </label>
+                    <label>
+                        Height (cm)
+                        <input type="number" id="height" min="50" max="260" required>
+                    </label>
+                    <label>
+                        Weight (kg)
+                        <input type="number" id="weight" min="20" max="300" required>
+                    </label>
+                </div>
+
+                <div class="diet-form-grid diet-form-grid--2">
+                    <label>
+                        Primary Goal
+                        <select id="goal" required>
+                            <option value="">Select</option>
+                            <option value="Lose weight">Lose weight</option>
+                            <option value="Gain muscle">Gain muscle</option>
+                            <option value="Maintain">Maintain</option>
+                            <option value="Health condition">Health condition</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </label>
+                    <label>
+                        Dietary Preference
+                        <select id="dietary-preference" required>
+                            <option value="">Select</option>
+                            <option value="No restriction">No restriction</option>
+                            <option value="Vegetarian">Vegetarian</option>
+                            <option value="Vegan">Vegan</option>
+                            <option value="Keto">Keto</option>
+                            <option value="Jain">Jain</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </label>
+                </div>
+
+                <div class="diet-form-grid diet-form-grid--3">
+                    <fieldset>
+                        <legend>Food Allergies (Multi-select)</legend>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="allergies" value="Gluten"> Gluten</label>
+                            <label><input type="checkbox" name="allergies" value="Dairy"> Dairy</label>
+                            <label><input type="checkbox" name="allergies" value="Nuts"> Nuts</label>
+                            <label><input type="checkbox" name="allergies" value="Soy"> Soy</label>
+                            <label><input type="checkbox" name="allergies" value="Eggs"> Eggs</label>
+                            <label><input type="checkbox" name="allergies" value="None"> None</label>
+                            <label><input type="checkbox" name="allergies" value="Other"> Other</label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Medical Conditions (Multi-select)</legend>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="conditions" value="Diabetes"> Diabetes</label>
+                            <label><input type="checkbox" name="conditions" value="BP"> BP</label>
+                            <label><input type="checkbox" name="conditions" value="Cholesterol"> Cholesterol</label>
+                            <label><input type="checkbox" name="conditions" value="PCOS"> PCOS</label>
+                            <label><input type="checkbox" name="conditions" value="Thyroid"> Thyroid</label>
+                            <label><input type="checkbox" name="conditions" value="IBS"> IBS</label>
+                            <label><input type="checkbox" name="conditions" value="None"> None</label>
+                            <label><input type="checkbox" name="conditions" value="Other"> Other</label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Lifestyle Preferences</legend>
+                        <div class="diet-form-stack">
+                            <label>
+                                Activity Level
+                                <select id="activity-level" required>
+                                    <option value="">Select</option>
+                                    <option value="Sedentary">Sedentary</option>
+                                    <option value="Lightly active">Lightly active</option>
+                                    <option value="Moderate">Moderate</option>
+                                    <option value="Very active">Very active</option>
+                                </select>
+                            </label>
+                            <label>
+                                Meals Per Day
+                                <select id="meals-per-day" required>
+                                    <option value="">Select</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="3+snacks">3+snacks</option>
+                                    <option value="5-6 small meals">5-6 small meals</option>
+                                </select>
+                            </label>
+                            <label>
+                                Cuisine Preference
+                                <select id="cuisine-preference" required>
+                                    <option value="">Select</option>
+                                    <option value="Indian">Indian</option>
+                                    <option value="Mediterranean">Mediterranean</option>
+                                    <option value="Asian">Asian</option>
+                                    <option value="Western">Western</option>
+                                    <option value="No preference">No preference</option>
+                                </select>
+                            </label>
+                            <label>
+                                Cooking Situation
+                                <select id="cooking-situation" required>
+                                    <option value="">Select</option>
+                                    <option value="Cook daily">Cook daily</option>
+                                    <option value="Budget-friendly">Budget-friendly</option>
+                                    <option value="Meal prep">Meal prep</option>
+                                    <option value="Eat out">Eat out</option>
+                                </select>
+                            </label>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="diet-form-actions">
+                    <button id="generate-plan-btn" class="primary-btn" type="submit">Generate 7-Day Diet Plan</button>
+                </div>
+            </form>
+        </section>
+        </div><!-- /.diet-main-content -->
+        </div><!-- /.diet-layout -->
+
+        <section id="diet-plan-result" class="diet-plan-result hidden">
+            <div class="diet-plan-result__header">
+                <h2>Your 7-Day Diet Plan</h2>
+                <div class="chat-plan-actions">
+                    <button id="reset-plan-btn" class="quick-action-btn" style="background: var(--surface); color: var(--text); border-color: var(--border);" type="button">🔄 New Plan</button>
+                    <button id="copy-plan-btn" class="quick-action-btn" type="button">📋 Copy Plan</button>
+                    <button id="save-plan-btn" class="quick-action-btn" type="button">💾 Save Plan</button>
+                </div>
+            </div>
+            <div id="diet-plan-content" class="diet-plan-content"></div>
+        </section>
+    </main>
+    <script src="/shared/api-client.js"></script>
+    <script src="/shared/storage.js"></script>
+    <script src="/shared/ui-helpers.js"></script>
+    <script>loadNavbar('resources');</script>
+    <script src="/features/diet-plan/diet-plan.js"></script>
+</body>
+</html>

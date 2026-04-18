@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# Environment files
+.env
+.env.*
+
+# Database
+*.db
+*.db-journal
+
+# ML model weights (too large for git)
+MindfulMe/backend/models/
+MindfulMe/backend/models/**
+
+# Temp video uploads
+MindfulMe/backend/temp_videos/
+MindfulMe/backend/temp_videos/**
+MindfulMe/backend/uploads/*.webm
+MindfulMe/backend/uploads/*.mp4
+
+# Logs
+MindfulMe/backend/logs/
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node (if any future tooling)
+node_modules/

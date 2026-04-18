@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MindfulMe — a digital companion for your mental well-being. Track moods, journal your thoughts, and reflect with AI.">
+    <title>MindfulMe — Your Mental Wellness Companion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/bundle.css">
+    <link rel="shortcut icon" href="/assets/icon.ico" type="image/x-icon">
+</head>
+<body>
+    <div id="navbar-root"></div>
+
+    <main class="hero">
+        <div class="hero-inner">
+            <section class="hero-text">
+                <h1>A digital companion for your <span class="highlight">mental well-being</span></h1>
+                <p>MindfulMe helps you track your moods, capture your thoughts, and prepare for deeper conversations with yourself and your psychologist.</p>
+                <div class="cta-buttons">
+                    <button class="primary-btn" onclick="location.href='/features/journal/journal.html'">Start Your Journal</button>
+                    <button class="primary-btn" onclick="location.href='/features/dashboard/dashboard.html'">Go to Dashboard</button>
+                    <button class="secondary-btn" onclick="document.getElementById('how-it-works').scrollIntoView({ behavior: 'smooth' });">Learn How It Works</button>
+                </div>
+                <p class="hero-disclaimer-text">MindfulMe is a reflection and self-tracking tool. It does not provide diagnosis or replace therapy.</p>
+            </section>
+            <aside class="hero-visual" aria-hidden="true">
+                <div class="hero-visual-card">
+                    <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80" alt="Serene forest path">
+                    <p>See your emotional patterns over time and bring clear insights into your next session.</p>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <section class="quote-rotator" id="daily-quote">
+        <div class="quote-rotator__inner">
+            <div class="quote-rotator__icon">&#10077;</div>
+            <blockquote class="quote-rotator__text" id="quote-text"></blockquote>
+            <cite class="quote-rotator__author" id="quote-author"></cite>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="section section-light">
+        <div class="section-inner info-row">
+            <div class="info-row__col">
+                <h2 class="section-heading">What MindfulMe does</h2>
+                <p class="section-intro">MindfulMe is a calm, private space to log how you feel, write about your day, and reflect with gentle AI prompts.</p>
+                <ul class="section-list">
+                    <li><strong>Mood tracking</strong> to capture how you feel and when.</li>
+                    <li><strong>Guided journaling</strong> to explore your thoughts and experiences.</li>
+                    <li><strong>AI reflections</strong> that help you notice patterns and possible coping strategies.</li>
+                    <li><strong>Supportive resources</strong> with exercises and crisis information when you need extra support.</li>
+                </ul>
+            </div>
+            <div class="info-row__col info-row__col--highlight">
+                <h2 class="section-heading">Not a replacement for psychologists</h2>
+                <p><strong>MindfulMe is not a medical device and does not diagnose, treat, or provide emergency care.</strong></p>
+                <p>It is designed as a self-help and reflection companion that <strong>complements, not substitutes</strong>, support from a licensed mental health professional.</p>
+                <p>If you are in crisis, feeling unsafe, or worried about harming yourself or others, please <strong>contact local emergency services</strong> or a crisis helpline immediately.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="section section-features">
+        <div class="section-inner">
+            <h2 class="section-heading">Tools that work together</h2>
+            <p class="section-intro">Each feature is designed to deepen your self-awareness and support more meaningful therapy conversations.</p>
+            <div class="features-grid">
+                <a href="/features/dashboard/dashboard.html" class="feature-card">
+                    <img class="feature-card__img" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" alt="Analytics dashboard on screen">
+                    <div class="feature-card__body">
+                        <h3>Dashboard</h3>
+                        <p>View your wellness score, streaks, mood trends, and personalized insights.</p>
+                    </div>
+                </a>
+                <a href="/features/mood-tracker/mood-tracker.html" class="feature-card">
+                    <img class="feature-card__img" src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=600&q=80" alt="Sunrise over a calm landscape">
+                    <div class="feature-card__body">
+                        <h3>Mood tracking</h3>
+                        <p>Log your feelings and see emotional patterns at a glance.</p>
+                    </div>
+                </a>
+                <a href="/features/journal/journal.html" class="feature-card">
+                    <img class="feature-card__img" src="https://images.unsplash.com/photo-1517842645767-c639042777db?w=600&q=80" alt="Journal and pen on a wooden table">
+                    <div class="feature-card__body">
+                        <h3>Journaling</h3>
+                        <p>Write freely about your day, thoughts, and experiences in a private space.</p>
+                    </div>
+                </a>
+                <a href="/features/resources/resources.html" class="feature-card">
+                    <img class="feature-card__img" src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&q=80" alt="Books and resources">
+                    <div class="feature-card__body">
+                        <h3>Resources</h3>
+                        <p>Explore exercises and articles to support coping and self-care.</p>
+                    </div>
+                </a>
+                <a href="/features/ai-therapist/ai-therapist.html" class="feature-card">
+                    <img class="feature-card__img" src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=600&q=80" alt="Supportive conversation">
+                    <div class="feature-card__body">
+                        <h3>AI therapist</h3>
+                        <p>Have reflective, supportive conversations with an AI that learns your context over time.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="for-you-and-professionals" class="section">
+        <div class="section-inner two-column">
+            <div>
+                <h3 class="section-subheading">For individuals</h3>
+                <p>Use MindfulMe to track moods, journal freely, and talk to the AI therapist between appointments. Over time, you can see patterns in triggers, routines, and coping strategies that support your mental health journey.</p>
+                <ul class="section-list">
+                    <li>Notice what lifts you up or wears you down across days and weeks.</li>
+                    <li>Capture thoughts and moments you may want to share later in therapy.</li>
+                    <li>Arrive at sessions with concrete examples instead of trying to remember everything.</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="section-subheading">For psychologists</h3>
+                <p>With your patient's consent, MindfulMe can make it easier to understand what happens between sessions and how life events influence their emotional state.</p>
+                <ul class="section-list">
+                    <li>Review mood trends and significant notes over time.</li>
+                    <li>See high-level themes from journals and AI reflections.</li>
+                    <li>Use this context to focus time together on what matters most.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <script src="/shared/api-client.js"></script>
+    <script src="/shared/storage.js"></script>
+    <script src="/shared/ui-helpers.js"></script>
+    <script>
+        loadNavbar('home');
+
+        (function initQuoteRotator() {
+            const quotes = [
+                { text: "Almost everything will work again if you unplug it for a few minutes, including you.", author: "Anne Lamott" },
+                { text: "You don't have to control your thoughts. You just have to stop letting them control you.", author: "Dan Millman" },
+                { text: "Self-care is not self-indulgence, it is self-preservation.", author: "Audre Lorde" },
+                { text: "The greatest glory in living lies not in never falling, but in rising every time we fall.", author: "Nelson Mandela" },
+                { text: "You are not your illness. You have an individual story to tell. You have a name, a history, a personality.", author: "Julian Seifter" },
+                { text: "There is hope, even when your brain tells you there isn't.", author: "John Green" },
+                { text: "Healing takes time, and asking for help is a courageous step.", author: "Mariska Hargitay" },
+                { text: "What mental health needs is more sunlight, more candor, and more unashamed conversation.", author: "Glenn Close" },
+                { text: "Be patient with yourself. Self-growth is tender; it's holy ground.", author: "Stephen Covey" },
+                { text: "Not until we are lost do we begin to understand ourselves.", author: "Henry David Thoreau" },
+                { text: "Your present circumstances don't determine where you can go; they merely determine where you start.", author: "Nido Qubein" },
+                { text: "Owning our story and loving ourselves through that process is the bravest thing that we'll ever do.", author: "Brené Brown" },
+                { text: "Mental health problems don't define who you are. They are something you experience.", author: "Matt Haig" },
+                { text: "The only journey is the journey within.", author: "Rainer Maria Rilke" },
+            ];
+            const dayIndex = Math.floor(Date.now() / 86400000) % quotes.length;
+            const q = quotes[dayIndex];
+            const textEl = document.getElementById('quote-text');
+            const authorEl = document.getElementById('quote-author');
+            if (textEl) textEl.textContent = q.text;
+            if (authorEl) authorEl.textContent = '— ' + q.author;
+        })();
+    </script>
+</body>
+</html>

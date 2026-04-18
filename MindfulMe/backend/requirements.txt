@@ -1,10 +1,32 @@
 fastapi
-uvicorn
-python-multipart
-pydantic-settings
-pytest
+uvicorn[standard]
 httpx
-fer
-multimodal-emotion-engine
+pydantic-settings
+python-dotenv
+python-multipart
+aiofiles
+requests
+
+# --- Emotion Analysis Stack (Option B) ---
+# ORM
+sqlalchemy>=2.0.0
+
+# Vision: Face detection + OpenCV frame extraction
+opencv-python>=4.8.0
+mediapipe==0.10.33
+
+# Speech transcription: Whisper tiny (~39 MB on first download)
 openai-whisper
-setuptools
+librosa>=0.10.0
+scipy>=1.13.0
+
+# Sentiment analysis: DistilBERT via ONNX Runtime (no PyTorch)
+transformers>=4.34.0
+onnxruntime>=1.16.0
+optimum[onnxruntime]>=1.13.0
+
+# Audio extraction fallback (when ffmpeg not on PATH)
+moviepy
+
+# Validation
+pydantic>=2.4.0
